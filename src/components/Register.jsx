@@ -31,7 +31,7 @@ const Register = () => {
 
       setLoading(true)
       const response = await axios
-        .post(`${ApiURL}/user/register`, formData, {
+        .post(`${ApiURL}/admin/register`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
