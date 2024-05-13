@@ -23,27 +23,20 @@ const Register = () => {
   }
 
   const handleSignUp = async () => {
-    if (confirmPass === password) {
-      const formData = new FormData()
-
-      formData.append('email', email)
-      formData.append('password', password)
-
+    if (confirmPass == password) {
       setLoading(true)
       const response = await axios
-        .post(`${ApiURL}/admin/register`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
+        .post(`${ApiURL}/admin/register`, { email, password })
         .then((res) => {
-          setLoading(false)
+          console.log(res, { email, password })
           alert('User Successfully Registered')
+          setLoading(false)
           clearAllInputs()
           setIsOpen(true)
           setIsOpenReg(false)
         })
         .catch((error) => {
+          console.log(error)
           if (error?.response) {
             alert(extractErrorMessage(error?.response?.data))
           }
